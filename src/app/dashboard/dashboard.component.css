@@ -1,0 +1,117 @@
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.user-listing {
+
+  margin-top: 64px;
+  padding: 24px;
+}
+.mat-elevation-z8 {
+  width: 100%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.user-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.user-actions button {
+  margin-left: 16px;
+  margin-top: 0px;
+}
+
+/* .user-listing {
+  position: relative;
+} */
+
+/* .user-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+} */
+.user-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.mat-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1; /* Ensure the toolbar appears above other elements
+}
+
+.user-listing {
+  display: flex;
+  margin-top: 64px;
+  padding: 24px;
+}
+
+.table-container {
+  flex: 1; /* Use flex: 1 to allow the table to take remaining space */
+  padding-right: 10px;
+  transition: flex 0.3s;
+}
+
+.user-form {
+  flex-basis: 300px;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: width 0.3s;
+}
+
+.user-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+  margin-top: 40px;
+}
+
+/* .user-listing {
+  position: relative;
+} */
+
+/* .user-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+} */
+.user-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+/* Media query for small screens */
+@media screen and (max-width: 600px) {
+  .user-listing {
+    flex-wrap: wrap;
+  }
+
+  .table-container {
+    flex-basis: 100%;
+    padding-right: 0;
+  }
+
+  .user-form {
+    flex-basis: 100%;
+    margin-left: 50px;
+    padding-left: 50px;
+  }
+}
+
+
+
+
