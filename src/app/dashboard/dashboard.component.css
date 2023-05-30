@@ -1,14 +1,20 @@
 mat-toolbar {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
 }
-.user-listing {
 
-  margin-top: 64px;
+.user-listing {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 24px;
   padding: 24px;
+  padding:20px;
 }
+
 .mat-elevation-z8 {
   width: 100%;
 }
@@ -28,23 +34,8 @@ mat-toolbar {
   margin-top: 0px;
 }
 
-/* .user-listing {
-  position: relative;
-} */
-
-/* .user-actions {
-  position: absolute;
-  top: 0;
-  right: 0;
-} */
-.user-actions {
-  display: flex;
-  justify-content: flex-end;
-}
-
-
 .mat-toolbar {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -57,15 +48,16 @@ mat-toolbar {
   padding: 24px;
 }
 
-.table-container {
-  flex: 1; /* Use flex: 1 to allow the table to take remaining space */
+/* .table-container {
+  flex: 1; Use flex: 1 to allow the table to take remaining space */
   padding-right: 10px;
   transition: flex 0.3s;
 }
 
 .user-form {
+  inline-size: 25%;
   flex-basis: 300px;
-  padding-left: 10px;
+  padding-inline-start: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -79,22 +71,10 @@ mat-toolbar {
   margin-top: 40px;
 }
 
-/* .user-listing {
-  position: relative;
-} */
-
-/* .user-actions {
-  position: absolute;
-  top: 0;
-  right: 0;
-} */
-.user-actions {
-  display: flex;
-  justify-content: flex-end;
+.mat-row.selected {
+  background-color: lightblue;
 }
 
-
-/* Media query for small screens */
 @media screen and (max-width: 600px) {
   .user-listing {
     flex-wrap: wrap;
@@ -111,7 +91,3 @@ mat-toolbar {
     padding-left: 50px;
   }
 }
-
-
-
-
