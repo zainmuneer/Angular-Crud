@@ -11,17 +11,17 @@
 
 </div> -->
 <div class="user-listing">
-  <div>
-    <h2 style="float: inline-start">User Listing</h2>
+  <div style="flex: 1 1 100%">
+    <h2>User Listing</h2>
     <div class="user-actions">
-  <button mat-raised-button color="primary" (click)="addUser()">Add User</button>
-  <button mat-raised-button color="primary"(click)="editUser(users)"[disabled]="!selectedUser || selectedUser !==users">Edit</button>
-  <!-- <button mat-raised-button color="primary"  (click)="editUser()">Edit</button> -->
+      <button mat-raised-button color="primary" (click)="addUser()" [disabled]="isFormVisible">Add User</button>
+      <!-- <button mat-raised-button color="primary"(click)="editUser(User)"[disabled]="!selectedUser || selectedUser !==users">Edit</button> -->
+      <!-- <button mat-raised-button color="primary"  (click)="editUser()">Edit</button> -->
 
-</div>
-    <!-- <button style="float: inline-end ," (click)="addUser()">Add</button> -->
+    </div>
   </div>
-  <div class="table-container">
+
+  <div class="table-container" [ngClass]="{'form-visible':isFormVisible}" [style.width]="isFormVisible ? '70%' : '100%' ">
     <table mat-table [dataSource]="users" class="mat-elevation-z8">
 
       <ng-container matColumnDef="name">
@@ -45,49 +45,67 @@
       </ng-container>
 
       <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef></th>
+        <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let user">
           <!-- <button mat-icon-button color="primary" (click)="editUser(user)">
             <mat-icon>edit</mat-icon>
           </button> -->
+          <button mat-icon-button color="primary" *ngIf="selectedUser === user" (click)="editUser(user)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" *ngIf="selectedUser === user" (click)="confirmDelete(user.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
         </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let user; columns: displayedColumns"></tr>
+      <!-- <tr mat-row *matRowDef="let user; columns: displayedColumns"></tr> -->
+      <!-- <tr mat-row *matRowDef="let user; columns: displayedColumns" (click)="selectUser(user)"></tr> -->
+      <tr mat-row *matRowDef="let user; index as i; columns: displayedColumns" [class.selected]="i === selectedRowIndex"
+        (click)="selectUser(user, i)">
+      </tr>
+
     </table>
   </div>
-</div>
 
-<div class="user-form" *ngIf="isFormVisible">
+  <div class="user-form" *ngIf="isFormVisible">
 
-  <h2>{{ isEditMode ? 'Edit User' : 'Add User' }}</h2>
-  <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+      <h2>{{ isEditMode ? 'Edit User' : 'Add User' }}</h2>
+      <form [formGroup]="userForm" (ngSubmit)="saveUser()">
 
-    <mat-form-field appearance="outline">
-      <mat-label>Name</mat-label>
-      <input matInput type="text" formControlName="name" placeholder="Name" required>
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name" placeholder="Name" required>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Email</mat-label>
-      <input matInput type="email" formControlName="email" placeholder="Email" required>
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="Email" required>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Designation</mat-label>
-      <input matInput type="text" formControlName="designation" placeholder="Designation">
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Designation</mat-label>
+        <input matInput type="text" formControlName="designation" placeholder="Designation">
+      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Department</mat-label>
-      <input matInput type="text" formControlName="department" placeholder="department">
-    </mat-form-field>
-  </form>
-  <div class="form-actions">
-    <!-- <button mat-raised-button color="primary" type="submit">{{ isEditMode ? 'Save Changes' : 'Add User' }}
-    </button> -->
-    <button mat-raised-button color="primary" (click)="saveUser()">Add user</button>
-    <button mat-button (click)="cancelForm()">Cancel</button>
+      <mat-form-field appearance="outline">
+        <mat-label>Department</mat-label>
+        <input matInput type="text" formControlName="department" placeholder="department">
+      </mat-form-field>
+    </form>
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit" (click)="saveUser()" name="saveButton">{{ isEditMode ?
+        'Update User' : 'Save Change' }}
+      </button>
+      <!-- <button mat-raised-button color="primary" type="submit">
+        {{ isEditMode ? 'Save Changes' : (selectedUser ? 'Update User' : 'Add User') }}
+      </button> -->
+      <!-- <button mat-raised-button color="primary" (click)="saveUser()">Add user</button> -->
+
+      <button mat-button (click)="cancelForm()">Cancel</button>
+    </div>
   </div>
+
 </div>
+
